@@ -10,4 +10,17 @@ RUN ./bootstrap.sh && ./configure && make
 
 RUN make install
 
-ENTRYPOINT [ "/usr/local/sbin/wfantund" ]
+WORKDIR /app/ti-wisun-webapp/server
+
+RUN apt-get install -y nodejs npm
+
+RUN npm install
+
+WORKDIR /app/ti-wisun-webapp/client
+
+RUN npm install
+
+
+
+
+ENTRYPOINT [ "/app/start.sh" ]
